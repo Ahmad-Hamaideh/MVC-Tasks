@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CORstd">
+    <Key>
+      <PropertyRef Name="CorID" />
+      <PropertyRef Name="StdID" />
+    </Key>
+    <Property Name="CorID" Type="int" Nullable="false" />
+    <Property Name="StdID" Type="int" Nullable="false" />
+    <Property Name="xx" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="note" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="STD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentName" Type="varchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+  </EntityType>
+  <Association Name="FK_CORstd_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CORstd" Type="Self.CORstd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="CORstd">
+        <PropertyRef Name="CorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CORstd_STD">
+    <End Role="STD" Type="Self.STD" Multiplicity="1" />
+    <End Role="CORstd" Type="Self.CORstd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CORstd">
+        <PropertyRef Name="StdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcModelStoreContainer">
+    <EntitySet Name="CORstd" EntityType="Self.CORstd" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STD" EntityType="Self.STD" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CORstd_Course" Association="Self.FK_CORstd_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CORstd" EntitySet="CORstd" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CORstd_STD" Association="Self.FK_CORstd_STD">
+      <End Role="STD" EntitySet="STD" />
+      <End Role="CORstd" EntitySet="CORstd" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
