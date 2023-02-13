@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ApiTask.Models.MGApi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameMG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLLApi.NameCLL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameMG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLLApi.NameCLL)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idMG }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idMG }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idMG })
+        </td>
+    </tr>
+}
+
+</table>

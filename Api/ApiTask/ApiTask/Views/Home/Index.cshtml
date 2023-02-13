@@ -1,0 +1,42 @@
+﻿<div class="jumbotron">
+    <h1>Api</h1>
+
+</div>
+
+
+
+<div id="lol" style="padding:20px;">
+
+</div>
+
+
+
+<script>
+    async function read() {
+        try {
+            const api = "https://localhost:44330/api/CLLApis";
+            const res = await fetch(api);
+            const data = await res.json();
+
+            console.log(data);
+            readdata(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    function readdata(data) {
+        for (let i = 0; i < data.length; i++) {
+
+            document.getElementById('lol').innerHTML += "<p  style='padding:20px;text-align:center ; height:50px ; background-color:aquamarine ; border-radius:25px ; width:160px ;'><a class='d-block h5 mb-2' href='/MGApis/Index/" + data[i].IdCLL + "'>" + data[i].NameCLL + "</a>  </p> ";
+
+
+        }
+    }
+    read();</script>
+
+</body>
+
+</html>
+
+
+

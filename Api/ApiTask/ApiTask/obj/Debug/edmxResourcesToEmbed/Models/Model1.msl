@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MvcModelStoreContainer" CdmEntityContainer="MvcEntities">
+    <EntitySetMapping Name="CLLApis">
+      <EntityTypeMapping TypeName="MvcModel.CLLApi">
+        <MappingFragment StoreEntitySet="CLLApi">
+          <ScalarProperty Name="IdCLL" ColumnName="IdCLL" />
+          <ScalarProperty Name="NameCLL" ColumnName="NameCLL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MGApis">
+      <EntityTypeMapping TypeName="MvcModel.MGApi">
+        <MappingFragment StoreEntitySet="MGApi">
+          <ScalarProperty Name="idMG" ColumnName="idMG" />
+          <ScalarProperty Name="NameMG" ColumnName="NameMG" />
+          <ScalarProperty Name="idCLL" ColumnName="idCLL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CLLApi">
+    <Key>
+      <PropertyRef Name="IdCLL" />
+    </Key>
+    <Property Name="IdCLL" Type="int" Nullable="false" />
+    <Property Name="NameCLL" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MGApi">
+    <Key>
+      <PropertyRef Name="idMG" />
+    </Key>
+    <Property Name="idMG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameMG" Type="varchar" MaxLength="50" />
+    <Property Name="idCLL" Type="int" />
+  </EntityType>
+  <Association Name="FK_MGApi_MGApi">
+    <End Role="CLLApi" Type="Self.CLLApi" Multiplicity="0..1" />
+    <End Role="MGApi" Type="Self.MGApi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLLApi">
+        <PropertyRef Name="IdCLL" />
+      </Principal>
+      <Dependent Role="MGApi">
+        <PropertyRef Name="idCLL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcModelStoreContainer">
+    <EntitySet Name="CLLApi" EntityType="Self.CLLApi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MGApi" EntityType="Self.MGApi" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MGApi_MGApi" Association="Self.FK_MGApi_MGApi">
+      <End Role="CLLApi" EntitySet="CLLApi" />
+      <End Role="MGApi" EntitySet="MGApi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

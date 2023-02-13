@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CLLApi">
+    <Key>
+      <PropertyRef Name="IdCLL" />
+    </Key>
+    <Property Name="IdCLL" Type="Int32" Nullable="false" />
+    <Property Name="NameCLL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MGApis" Relationship="Self.FK_MGApi_MGApi" FromRole="CLLApi" ToRole="MGApi" />
+  </EntityType>
+  <EntityType Name="MGApi">
+    <Key>
+      <PropertyRef Name="idMG" />
+    </Key>
+    <Property Name="idMG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameMG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idCLL" Type="Int32" />
+    <NavigationProperty Name="CLLApi" Relationship="Self.FK_MGApi_MGApi" FromRole="MGApi" ToRole="CLLApi" />
+  </EntityType>
+  <Association Name="FK_MGApi_MGApi">
+    <End Role="CLLApi" Type="Self.CLLApi" Multiplicity="0..1" />
+    <End Role="MGApi" Type="Self.MGApi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLLApi">
+        <PropertyRef Name="IdCLL" />
+      </Principal>
+      <Dependent Role="MGApi">
+        <PropertyRef Name="idCLL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CLLApis" EntityType="Self.CLLApi" />
+    <EntitySet Name="MGApis" EntityType="Self.MGApi" />
+    <AssociationSet Name="FK_MGApi_MGApi" Association="Self.FK_MGApi_MGApi">
+      <End Role="CLLApi" EntitySet="CLLApis" />
+      <End Role="MGApi" EntitySet="MGApis" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

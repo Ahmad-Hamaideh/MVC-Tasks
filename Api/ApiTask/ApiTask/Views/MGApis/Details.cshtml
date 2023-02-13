@@ -1,0 +1,34 @@
+﻿@model ApiTask.Models.MGApi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MGApi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameMG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameMG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLLApi.NameCLL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLLApi.NameCLL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idMG }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
